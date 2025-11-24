@@ -1,0 +1,172 @@
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    padding: 2rem;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #4361ee, #7209b7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.auth-header p {
+    color: #4a5568;
+    font-size: 1.1rem;
+}
+
+.auth-tabs {
+    display: flex;
+    background: rgba(226, 232, 240, 0.5);
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 2rem;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    color: #4a5568;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+}
+
+.tab-btn.active {
+    background: white;
+    color: #4361ee;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Login Form - WHITE BOX */
+#loginForm {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+#loginForm .form-group input {
+    background: white;
+    border: 2px solid #e2e8f0;
+    color: #2d3748;
+}
+
+#loginForm .form-group input:focus {
+    border-color: #89c2d9;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(137, 194, 217, 0.2);
+}
+
+#loginForm .btn-primary {
+    background: linear-gradient(135deg, #4361ee, #7209b7);
+}
+
+#loginForm .btn-primary:hover {
+    background: linear-gradient(135deg, #3a51d4, #6108a1);
+    box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+}
+
+/* Register Form - WHITE BOX */
+#registerForm {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+#registerForm .form-group input {
+    background: white;
+    border: 2px solid #e2e8f0;
+    color: #2d3748;
+}
+
+#registerForm .form-group input:focus {
+    border-color: #8fbc8f;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(143, 188, 143, 0.2);
+}
+
+#registerForm .btn-primary {
+    background: linear-gradient(135deg, #4361ee, #7209b7);
+}
+
+#registerForm .btn-primary:hover {
+    background: linear-gradient(135deg, #3a51d4, #6108a1);
+    box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+}
+
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-footer {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+    color: #4a5568;
+    font-size: 0.9rem;
+}
+
+.auth-footer p {
+    margin: 5px 0;
+}
+
+/* Fill Demo Button */
+#fillDemo {
+    background: linear-gradient(135deg, #ffa726, #ffb74d);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-weight: 600;
+}
+
+#fillDemo:hover {
+    background: linear-gradient(135deg, #ff9800, #ffa726);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 167, 38, 0.4);
+}

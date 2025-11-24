@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar - STRMS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/calendar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>STRMS</span>
+            </div>
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="workspace.html" class="nav-link">
+                    <i class="fas fa-tasks"></i> Workspace
+                </a>
+                <a href="calendar.html" class="nav-link active">
+                    <i class="fas fa-calendar"></i> Calendar
+                </a>
+                <button id="aiChatBtn" class="nav-link">
+                    <i class="fas fa-robot"></i> AI Assistant
+                </button>
+                <button id="logoutBtn" class="nav-link">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="calendar-header">
+            <h1><i class="fas fa-calendar"></i> Study Calendar</h1>
+            <p>Manage your schedule and important dates</p>
+            <button id="addEventBtn" class="btn-primary">
+                <i class="fas fa-plus"></i> Add New Event
+            </button>
+        </div>
+
+        <!-- Calendar Controls -->
+        <div class="calendar-controls">
+            <div class="calendar-nav">
+                <button id="prevBtn" class="btn-secondary">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <!-- Date Selection Buttons -->
+                <div class="date-buttons">
+                    <button id="yearBtn" class="date-btn active">
+                        <span id="currentYear">2025</span>
+                        <i class="fas fa-caret-down"></i>
+                    </button>
+                    <button id="monthBtn" class="date-btn">
+                        <span id="currentMonthText">December</span>
+                        <i class="fas fa-caret-down"></i>
+                    </button>
+                    <button id="dayBtn" class="date-btn">
+                        <span id="currentDay">Day</span>
+                        <i class="fas fa-caret-down"></i>
+                    </button>
+                </div>
+
+                <button id="nextBtn" class="btn-secondary">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <button id="todayBtn" class="btn-secondary">Today</button>
+            </div>
+            
+            <!-- Dropdown Menus -->
+            <div class="dropdown-menus">
+                <div id="yearDropdown" class="dropdown-menu">
+                    <div class="dropdown-content">
+                        <div class="dropdown-header">
+                            <button class="dropdown-nav prev-year"><i class="fas fa-chevron-left"></i></button>
+                            <span class="dropdown-title">Year</span>
+                            <button class="dropdown-nav next-year"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="year-grid">
+                            <!-- Years will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <div id="monthDropdown" class="dropdown-menu">
+                    <div class="dropdown-content">
+                        <div class="month-grid">
+                            <div class="month-item" data-month="0">January</div>
+                            <div class="month-item" data-month="1">February</div>
+                            <div class="month-item" data-month="2">March</div>
+                            <div class="month-item" data-month="3">April</div>
+                            <div class="month-item" data-month="4">May</div>
+                            <div class="month-item" data-month="5">June</div>
+                            <div class="month-item" data-month="6">July</div>
+                            <div class="month-item" data-month="7">August</div>
+                            <div class="month-item" data-month="8">September</div>
+                            <div class="month-item" data-month="9">October</div>
+                            <div class="month-item" data-month="10">November</div>
+                            <div class="month-item" data-month="11">December</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="dayDropdown" class="dropdown-menu">
+                    <div class="dropdown-content">
+                        <div class="day-grid">
+                            <!-- Days will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendar Container -->
+        <div class="calendar-container">
+            <!-- Calendar Grid -->
+            <div class="calendar-main">
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- Calendar will be generated here -->
+                </div>
+            </div>
+
+            <!-- Events Sidebar -->
+            <div class="events-sidebar">
+                <div class="sidebar-header">
+                    <h3>Upcoming Events</h3>
+                    <span id="eventsCount">0 events</span>
+                </div>
+                <div class="events-list" id="eventsList">
+                    <!-- Events will be listed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Modal -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="eventModalTitle">Add New Event</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="eventForm">
+                    <input type="hidden" id="eventId">
+                    <div class="form-group">
+                        <label for="eventTitle">Event Title *</label>
+                        <input type="text" id="eventTitle" required placeholder="Enter event title">
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDescription">Description</label>
+                        <textarea id="eventDescription" rows="3" placeholder="Enter event description"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="eventDate">Date *</label>
+                            <input type="date" id="eventDate" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="eventStartTime">Start Time</label>
+                            <input type="time" id="eventStartTime">
+                        </div>
+                        <div class="form-group">
+                            <label for="eventEndTime">End Time</label>
+                            <input type="time" id="eventEndTime">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="closeEventModal()">Cancel</button>
+                        <button type="submit" class="btn-primary">Save Event</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chat Modal -->
+    <div id="aiChatModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-robot"></i> AI Study Assistant</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="ai-message">
+                            <div class="message-content">
+                                Hello! I'm your AI study assistant. How can I help you with your schedule and time management today?
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="chatInput" placeholder="Ask me about scheduling, time management...">
+                        <button id="sendMessage">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api-config.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/ai_chat.js"></script>
+</body>
+</html>

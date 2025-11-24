@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workspace - STRMS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/workspace.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>STRMS</span>
+            </div>
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="workspace.html" class="nav-link active">
+                    <i class="fas fa-tasks"></i> Workspace
+                </a>
+                <a href="calendar.html" class="nav-link">
+                    <i class="fas fa-calendar"></i> Calendar
+                </a>
+                <button id="aiChatBtn" class="nav-link">
+                    <i class="fas fa-robot"></i> AI Assistant
+                </button>
+                <button id="logoutBtn" class="nav-link">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="workspace-header">
+            <h1><i class="fas fa-tasks"></i> Task Workspace</h1>
+            <p>Manage your study tasks and track your progress</p>
+            <button id="addTaskBtn" class="btn-primary">
+                <i class="fas fa-plus"></i> Add New Task
+            </button>
+        </div>
+
+        <!-- Search and Filters -->
+        <div class="workspace-controls">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="taskSearch" placeholder="Search tasks...">
+            </div>
+            <div class="filter-controls">
+                <select id="priorityFilter">
+                    <option value="">All Priorities</option>
+                    <option value="high">High Priority</option>
+                    <option value="medium">Medium Priority</option>
+                    <option value="low">Low Priority</option>
+                </select>
+                <select id="progressFilter">
+                    <option value="">All Progress</option>
+                    <option value="incomplete">Incomplete</option>
+                    <option value="complete">Completed</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Tasks Grid -->
+        <div class="tasks-grid" id="tasksGrid">
+            <!-- Tasks will be loaded here -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <i class="fas fa-clipboard-list"></i>
+            <h3>No tasks yet</h3>
+            <p>Create your first task to get started with your study plan</p>
+            <button class="btn-primary" onclick="openTaskModal()">Create Your First Task</button>
+        </div>
+    </div>
+
+    <!-- Task Modal -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="taskModalTitle">Add New Task</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="taskForm">
+                    <input type="hidden" id="taskId">
+                    <div class="form-group">
+                        <label for="taskTitle">Task Title *</label>
+                        <input type="text" id="taskTitle" required placeholder="Enter task title">
+                    </div>
+                    <div class="form-group">
+                        <label for="taskDescription">Description</label>
+                        <textarea id="taskDescription" rows="3" placeholder="Enter task description"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="taskPriority">Priority</label>
+                            <select id="taskPriority" required>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="taskDueDate">Due Date</label>
+                            <input type="date" id="taskDueDate">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskProgress">Progress: <span id="progressValue">0%</span></label>
+                        <input type="range" id="taskProgress" min="0" max="100" value="0">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="closeTaskModal()">Cancel</button>
+                        <button type="submit" class="btn-primary">Save Task</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chat Modal -->
+    <div id="aiChatModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-robot"></i> AI Study Assistant</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="ai-message">
+                            <div class="message-content">
+                                Hello! I'm your AI study assistant. How can I help you with your tasks and time management today?
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="chatInput" placeholder="Ask me about task management, productivity...">
+                        <button id="sendMessage">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api-config.js"></script>
+    <script src="js/workspace.js"></script>
+    <script src="js/ai_chat.js"></script>
+</body>
+</html>

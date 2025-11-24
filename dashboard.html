@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - STRMS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>STRMS</span>
+            </div>
+            <div class="nav-links">
+                <a href="dashboard.html" class="nav-link active">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="workspace.html" class="nav-link">
+                    <i class="fas fa-tasks"></i> Workspace
+                </a>
+                <a href="calendar.html" class="nav-link">
+                    <i class="fas fa-calendar"></i> Calendar
+                </a>
+                <button id="aiChatBtn" class="nav-link">
+                    <i class="fas fa-robot"></i> AI Assistant
+                </button>
+                <button id="logoutBtn" class="nav-link">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            <h1 id="welcomeMessage">Welcome back, Student!</h1>
+            <p>Here's your study overview for today</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-3 stats-grid">
+            <div class="glass-card stat-card">
+                <div class="stat-icon pending">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="pendingTasks">0</h3>
+                    <p>Pending Tasks</p>
+                </div>
+            </div>
+            <div class="glass-card stat-card">
+                <div class="stat-icon completed">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="completedTasks">0</h3>
+                    <p>Completed Today</p>
+                </div>
+            </div>
+            <div class="glass-card stat-card">
+                <div class="stat-icon events">
+                    <i class="fas fa-calendar-day"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="upcomingEvents">0</h3>
+                    <p>Upcoming Events</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-2 main-grid">
+            <!-- Upcoming Timeline -->
+            <div class="glass-card timeline-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-stream"></i> Upcoming Timeline
+                    </h2>
+                </div>
+                <div class="timeline" id="upcomingTimeline">
+                    <!-- Timeline items will be populated here -->
+                </div>
+            </div>
+
+            <!-- Calendar Preview -->
+            <div class="glass-card calendar-preview-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-calendar-alt"></i> Calendar Preview
+                    </h2>
+                    <a href="calendar.html" class="view-all">View Full Calendar</a>
+                </div>
+                <div class="calendar-preview" id="calendarPreview">
+                    <!-- Calendar will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="glass-card activity-card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <i class="fas fa-chart-line"></i> Recent Activity
+                </h2>
+            </div>
+            <div class="activity-list" id="recentActivity">
+                <!-- Activity items will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chat Modal -->
+    <div id="aiChatModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-robot"></i> AI Study Assistant</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="ai-message">
+                            <div class="message-content">
+                                Hello! I'm your AI study assistant. How can I help you with time management or studying today?
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="chatInput" placeholder="Ask me about study tips, time management...">
+                        <button id="sendMessage">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api-config.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/ai_chat.js"></script>
+</body>
+</html>
